@@ -8,7 +8,6 @@ const auth = require("../helpers/auth.helper");
 const mail = require("../helpers/mail.helper");
 
 router.post("/login", async (req, res) => {
-  console.log("hi2");
   const { email, password, rememberMe } = req.body;
   // Simple validation
   if (!email || !password) {
@@ -83,21 +82,21 @@ router.post("/register", async (req, res) => {
     <ul>
       <li>Name: ${savedUser.fname} ${savedUser.lname}</li>
       <li>Email: ${savedUser.email}</li>
-      <li>Registration Link: <a href="https://www.wonderkids.sg/api/auth/confirm/${token}">Click here</a></li>
+      <li>Registration Link: <a href="https://userauthentic.herokuapp.com/api/auth/confirm/${token}">Click here</a></li>
     </ul>
   `;
 
-    const textoutput = `Account Confirmation Request- Name: ${savedUser.fname} ${savedUser.lname}, Email: ${savedUser.email}, Registration Link: <a href="https://www.wonderkids.sg/api/auth/confirm/${token}" >Click here</a>`;
+    const textoutput = `Account Confirmation Request- Name: ${savedUser.fname} ${savedUser.lname}, Email: ${savedUser.email}, Registration Link: <a href="https://userauthentic.herokuapp.com/api/auth/confirm/${token}" >Click here</a>`;
 
-    // let mailOptions = {
-    //   from: `"Wonder Kids" <${process.env.mailUser}>`, // Server Email Address
-    //   to: savedUser.email, // Host Email Address
-    //   subject: "Account Registration Request | Wonder Kids", // Subject line
-    //   text: textoutput, // plain text body
-    //   html: output, // html body
-    // };
+    let mailOptions = {
+      from: `"User Authentication" <${process.env.mailUser}>`, // Server Email Address
+      to: savedUser.email, // Host Email Address
+      subject: "Account Registration Request | User Authentication", // Subject line
+      text: textoutput, // plain text body
+      html: output, // html body
+    };
 
-    // mail(mailOptions);
+    mail(mailOptions);
   } catch (err) {
     res.status(400).json("" + err);
   }
@@ -111,7 +110,7 @@ router.get("/confirm/:token", async (req, res) => {
     { _id: decoded.id },
     { $set: { "method.local.confirmed": true } }
   )
-    .then(() => res.redirect("/auth"))
+    .then(() => res.redirect("/"))
     .catch((err) => res.status(400).json("" + err));
 });
 
@@ -142,21 +141,20 @@ router.post("/forgot/:email", async (req, res) => {
     <ul>
       <li>Name: ${user.fname} ${user.lname}</li>
       <li>Email: ${user.email}</li>
-      <li>Registration Link: <a href="http://www.wonderkids.sg/auth/reset/${token}">Click here</a></li>
+      <li>Registration Link: <a href="https://userauthentic.herokuapp.com/reset/${token}">Click here</a></li>
     </ul>
   `;
 
     const textoutput = `Password Reset Link- Name: ${user.fname} ${user.lname}, Email: ${user.email}, Registration Link: <a href="http://localhost:5000/confirm/${token}">Click here</a>`;
 
     let mailOptions = {
-      from: `"Wonder Kids" <${process.env.mailUser}>`, // Server Email Address
+      from: `"User Authentication" <${process.env.mailUser}>`, // Server Email Address
       to: user.email, // Host Email Address
-      subject: "Password Reset Request | Wonder Kids", // Subject line
+      subject: "Password Reset Request | User Authentication", // Subject line
       text: textoutput, // plain text body
       html: output, // html body
     };
-    console.log(token);
-    // mail(mailOptions);
+    mail(mailOptions);
 
     res.status(200).json("Check mail for link to reset password.");
   } catch (err) {
