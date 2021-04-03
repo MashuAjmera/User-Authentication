@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix kids-activity-app && npm run build --prefix kids-activity-app"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix views && npm run build --prefix views"
   },
   "author": "Mashu Ajmera",
   "license": "ISC",
