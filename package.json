@@ -1,0 +1,27 @@
+{
+  "name": "user-authentication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix kids-activity-app && npm run build --prefix kids-activity-app"
+  },
+  "author": "Mashu Ajmera",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "nodemailer": "^6.5.0",
+    "passport": "^0.4.1",
+    "passport-google-token": "^0.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
