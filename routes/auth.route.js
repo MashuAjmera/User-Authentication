@@ -145,7 +145,7 @@ router.post("/forgot/:email", async (req, res) => {
     </ul>
   `;
 
-    const textoutput = `Password Reset Link- Name: ${user.fname} ${user.lname}, Email: ${user.email}, Registration Link: <a href="http://localhost:5000/confirm/${token}">Click here</a>`;
+    const textoutput = `Password Reset Link- Name: ${user.fname} ${user.lname}, Email: ${user.email}, Registration Link: <a href="https://userauthentic.herokuapp.com/confirm/${token}">Click here</a>`;
 
     let mailOptions = {
       from: `"User Authentication" <${process.env.mailUser}>`, // Server Email Address
@@ -164,7 +164,6 @@ router.post("/forgot/:email", async (req, res) => {
 
 router.post("/reset/", auth, async (req, res) => {
   const { password } = req.body;
-
   // Simple validation
   if (!password) {
     return res.status(400).json("Please enter password.");
@@ -180,6 +179,7 @@ router.post("/reset/", auth, async (req, res) => {
     if (!hash) throw Error("Something went wrong hashing the password");
 
     user.method.local.password = hash;
+    user.markModified("method");
     user
       .save()
       .then(() => res.status(200).json("Password Reset Successful."))

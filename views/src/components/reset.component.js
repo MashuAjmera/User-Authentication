@@ -43,9 +43,7 @@ export default class Reset extends Component {
       <form onSubmit={(e) => this.onReset(e)}>
         <h3>Welcome!</h3>
 
-        <p className="genric-btn default circle mb-3 mr-4">
-          {this.state.notif}
-        </p>
+        <p className="badge badge-secondary mt-3">{this.state.notif}</p>
 
         <div className="form-group">
           <label>Password</label>

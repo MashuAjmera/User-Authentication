@@ -37,9 +37,7 @@ export default class Forgot extends Component {
       <form onSubmit={(e) => this.forgotPassword(e)}>
         <h3>We'll get you right back on</h3>
 
-        <p className="genric-btn default circle mb-3 mr-4">
-          {this.state.notif}
-        </p>
+        <p className="badge badge-secondary mt-3">{this.state.notif}</p>
 
         <div className="form-group">
           <label>Email address</label>

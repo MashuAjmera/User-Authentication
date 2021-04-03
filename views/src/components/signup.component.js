@@ -39,9 +39,7 @@ export default class SignUp extends Component {
       <form onSubmit={(e) => this.onSignup(e)}>
         <h3>Sign Up</h3>
 
-        <p className="genric-btn default circle mb-3 mr-4">
-          {this.state.notif}
-        </p>
+        <p className="badge badge-secondary mt-3">{this.state.notif}</p>
 
         <div className="form-group">
           <label>First name</label>
