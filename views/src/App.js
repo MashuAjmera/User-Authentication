@@ -22,7 +22,7 @@ export default class App extends Component {
   userdata = () => {
     var token = localStorage.getItem("x-auth-token");
     if (token) {
-      fetch("http://localhost:5000/api/users/", {
+      fetch("/api/users/", {
         headers: {
           "x-auth-token": token,
         },
