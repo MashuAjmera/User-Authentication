@@ -21,7 +21,7 @@ export default class Login extends Component {
   onLogin = (e) => {
     e.preventDefault();
     this.setState({ notif: "Loading..." });
-    fetch("http://localhost:5000/api/auth/login", {
+    fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.state),
@@ -68,7 +68,7 @@ export default class Login extends Component {
         </p>
 
         <GoogleLogin
-          clientId="916794588129-s4c5hm3udi95r1t8vktquq2ccecc1jij.apps.googleusercontent.com"
+          clientId="29358870371-goptm137hcbls2nctpeflqr7a9hnfm27.apps.googleusercontent.com"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}
         />
